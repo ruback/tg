@@ -1,0 +1,359 @@
+String : Apenas um teste para "Aquecer" o softwar
+Regex : software
+Test 0: 0.134204824
+Test 1: 0.13440322
+Test 2: 0.123135184
+Test 3: 0.124706993
+Test 4: 0.12388013
+Media:  128.06607019999998
+Achou: true
+
+String : E eu estava dormindo: ZzZzZzZzZzZzZz
+Regex : (Zz)*
+Test 0: 0.891368199
+Test 1: 0.889531862
+Test 2: 0.884175172
+Test 3: 0.891968506
+Test 4: 0.88720487
+Media:  888.8497218
+Achou: true
+
+String : E eu estava dormindo: ZzZzZzZzZzZzZz
+Regex : (?:Zz)*
+Test 0: 0.825065129
+Test 1: 0.821176143
+Test 2: 0.824259173
+Test 3: 0.82256406
+Test 4: 0.825740528
+Media:  823.7610066000001
+Achou: true
+
+String : Meu login é thiago89 e tenho 22 anos.
+Regex : é (.)* e
+Test 0: 0.116062476
+Test 1: 0.116176394
+Test 2: 0.115511234
+Test 3: 0.115636671
+Test 4: 0.116080396
+Media:  115.8934342
+Achou: true
+
+String : Meu login é thiago89 e tenho 22 anos.
+Regex : é .* e
+Test 0: 0.078657376
+Test 1: 0.078702175
+Test 2: 0.078671029
+Test 3: 0.078262291
+Test 4: 0.079527758
+Media:  78.7641258
+Achou: true
+
+String : Meu login é thiago89 e tenho 22 anos.
+Regex : 89 [e] tenho [2]* anos
+Test 0: 0.437787728
+Test 1: 0.43813332
+Test 2: 0.437863673
+Test 3: 0.438679869
+Test 4: 0.438528833
+Media:  438.1986846
+Achou: true
+
+String : Meu login é thiago89 e tenho 22 anos.
+Regex : 89 e tenho 2* anos
+Test 0: 0.198357111
+Test 1: 0.198486388
+Test 2: 0.19773419
+Test 3: 0.197957333
+Test 4: 0.198094717
+Media:  198.1259478
+Achou: true
+
+String : Some huge string that will never match t
+Regex : .*Hello
+Test 0: 0.373444725
+Test 1: 0.375050239
+Test 2: 0.374764805
+Test 3: 0.373795438
+Test 4: 0.374448652
+Media:  374.30077180000006
+Achou: false
+
+String : Some huge string that will never match t
+Regex : ^.*Hello
+Test 0: 0.021097381
+Test 1: 0.02114986
+Test 2: 0.021460894
+Test 3: 0.021197646
+Test 4: 0.021139194
+Media:  21.208995
+Achou: false
+
+String : aa aaa a aaa a aaaa aaa bbb a bbbb aaa b
+Regex : a{7,10}
+Test 0: 0.228382736
+Test 1: 0.228273511
+Test 2: 0.229955824
+Test 3: 0.228825607
+Test 4: 0.228718516
+Media:  228.8312388
+Achou: true
+
+String : aa aaa a aaa a aaaa aaa bbb a bbbb aaa b
+Regex : aaaaaaaa{0,3}
+Test 0: 0.026689587
+Test 1: 0.026696414
+Test 2: 0.026475405
+Test 3: 0.026726279
+Test 4: 0.027009154
+Media:  26.719367799999997
+Achou: true
+
+String : those who don't find this interesting ar
+Regex : (?:there|they)
+Test 0: 0.352996717
+Test 1: 0.351065237
+Test 2: 0.352217639
+Test 3: 0.35223556
+Test 4: 0.35093596
+Media:  351.89022259999996
+Achou: true
+
+String : those who don't find this interesting ar
+Regex : the(?:re|y)
+Test 0: 0.13685949
+Test 1: 0.136015988
+Test 2: 0.136021534
+Test 3: 0.135903776
+Test 4: 0.136342381
+Media:  136.2286338
+Achou: true
+
+String : not here \nnot here \nnot here \nnot her
+Regex : ^start|^begin
+Test 0: 0.281664205
+Test 1: 0.280656865
+Test 2: 0.273465973
+Test 3: 0.271607024
+Test 4: 0.274243344
+Media:  276.3274822
+Achou: true
+
+String : not here \nnot here \nnot here \nnot her
+Regex : ^(?:begin|start)
+Test 0: 0.133389481
+Test 1: 0.133030662
+Test 2: 0.132937225
+Test 3: 0.132955144
+Test 4: 0.133668515
+Media:  133.1962054
+Achou: true
+
+String : not here \nnot here \nnot here \nnot her
+Regex : end$|finish$
+Test 0: 0.42548078
+Test 1: 0.42608962
+Test 2: 0.424682076
+Test 3: 0.426024768
+Test 4: 0.424906924
+Media:  425.43683359999994
+Achou: true
+
+String : not here \nnot here \nnot here \nnot her
+Regex : (?:end|finish)$
+Test 0: 0.370604463
+Test 1: 0.368537306
+Test 2: 0.368707968
+Test 3: 0.369690562
+Test 4: 0.368692609
+Media:  369.2465816
+Achou: true
+
+String : in the begining a bunch of text and more
+Regex : .*begining
+Test 0: 0.435730382
+Test 1: 0.437916152
+Test 2: 0.437352536
+Test 3: 0.436869133
+Test 4: 0.438741308
+Media:  437.32190220000007
+Achou: true
+
+String : in the begining a bunch of text and more
+Regex : .*?begining
+Test 0: 0.028101398
+Test 1: 0.027911535
+Test 2: 0.028198249
+Test 3: 0.028212755
+Test 4: 0.02835782
+Media:  28.156351400000002
+Achou: true
+
+String : a bunch of text and more text and more t
+Regex : .*end
+Test 0: 0.256060889
+Test 1: 0.252342139
+Test 2: 0.25456076
+Test 3: 0.252818715
+Test 4: 0.252412537
+Media:  253.63900800000005
+Achou: true
+
+String : a bunch of text and more text and more t
+Regex : .*?end
+Test 0: 0.417254388
+Test 1: 0.418572334
+Test 2: 0.417085432
+Test 3: 0.417797523
+Test 4: 0.41696298
+Media:  417.5345314
+Achou: true
+
+String : a bunch of text and more text and more t
+Regex : test|monkey|andy
+Test 0: 0.767956966
+Test 1: 0.76609631
+Test 2: 0.766948347
+Test 3: 0.768070457
+Test 4: 0.767232074
+Media:  767.2608308
+Achou: true
+
+String : a bunch of text and more text and more t
+Regex : test
+Test 0: 0.064404441
+Test 1: 0.064203485
+Test 2: 0.064711208
+Test 3: 0.064664275
+Test 4: 0.066317149
+Media:  64.86011160000001
+Achou: true
+
+String : a bunch of text and more text and more t
+Regex : monkey
+Test 0: 0.0436582
+Test 1: 0.043867688
+Test 2: 0.043698732
+Test 3: 0.04375761
+Test 4: 0.043693186
+Media:  43.7350832
+Achou: false
+
+String : a bunch of text and more text and more t
+Regex : andy
+Test 0: 0.058050651
+Test 1: 0.058239234
+Test 2: 0.058173528
+Test 3: 0.058450857
+Test 4: 0.059301612
+Media:  58.4431764
+Achou: false
+
+String : a bunch of yell and readable text and mo
+Regex : blue|yellow|red
+Test 0: 0.903327847
+Test 1: 0.904498596
+Test 2: 0.903474617
+Test 3: 0.903903408
+Test 4: 0.904012632
+Media:  903.84342
+Achou: true
+
+String : a bunch of yell and readable text and mo
+Regex : (?=[byr])(?:blue|yellow|red)
+Test 0: 0.564145886
+Test 1: 0.564572544
+Test 2: 0.562642343
+Test 3: 0.563323717
+Test 4: 0.565100747
+Media:  563.9570474000001
+Achou: true
+
+String : thiago:ruback:elvis:henrique:fabio:mokar
+Regex : [^:]+:obama
+Test 0: 0.122650501
+Test 1: 0.121707161
+Test 2: 0.121691801
+Test 3: 0.12285615
+Test 4: 0.12127709
+Media:  122.0365406
+Achou: true
+
+String : thiago:ruback:elvis:henrique:fabio:mokar
+Regex : [^:]++:obama
+Test 0: 0.08677369
+Test 1: 0.087307012
+Test 2: 0.087296772
+Test 3: 0.08854304
+Test 4: 0.086876514
+Media:  87.3594056
+Achou: true
+
+String : thiago:ruback:elvis:henrique:fabio:mokar
+Regex : (?>[^:]+):obama
+Test 0: 0.105656716
+Test 1: 0.105439974
+Test 2: 0.105243711
+Test 3: 0.105108887
+Test 4: 0.104927985
+Media:  105.27545460000002
+Achou: true
+
+String : foot
+Regex : (?:andy|barbie|car|dice|ex|foot)
+Test 0: 0.180205803
+Test 1: 0.180289427
+Test 2: 0.17968656
+Test 3: 0.179694667
+Test 4: 0.180131565
+Media:  180.0016044
+Achou: true
+
+String : foot
+Regex : (?:foot|andy|barbie|car|dice|ex)
+Test 0: 0.106487419
+Test 1: 0.105383655
+Test 2: 0.10502569
+Test 3: 0.105183126
+Test 4: 0.10597799
+Media:  105.611576
+Achou: true
+
+String : I want to find the last one but the is a
+Regex : (?:ex|some|other|excelent|stuff|way)\b
+Test 0: 0.134495379
+Test 1: 0.134145519
+Test 2: 0.134452286
+Test 3: 0.133753847
+Test 4: 0.134261997
+Media:  134.2218056
+Achou: true
+
+String : I want to find the last one but the is a
+Regex : (?:ex\b|some\b|other\b|excelent\b|stuff\b|way\b)
+Test 0: 0.134125893
+Test 1: 0.133878005
+Test 2: 0.133806326
+Test 3: 0.13361177
+Test 4: 0.135282563
+Media:  134.1409114
+Achou: true
+
+String : I want to find 555 a number 888 in this 
+Regex : (?:1|2|3|4)+
+Test 0: 0.697604913
+Test 1: 0.699391757
+Test 2: 0.697241827
+Test 3: 0.698369057
+Test 4: 0.699518047
+Media:  698.4251201999999
+Achou: true
+
+String : I want to find 555 a number 888 in this 
+Regex : [1-4]+
+Test 0: 0.229282131
+Test 1: 0.226833968
+Test 2: 0.227726536
+Test 3: 0.226920153
+Test 4: 0.226524641
+Media:  227.45748579999997
+Achou: true

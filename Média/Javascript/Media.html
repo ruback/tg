@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script type="text/javascript">
+var base = function(x,y) {return 0;}
+var metodo1 = function(x,y) {return Math.floor((x+y)/2);}
+var metodo2 = function(x,y) {return (x+y)>>1;}
+var metodo4 = function(x,y) {return ((x&y)+((x^y)>>1));}
+var metodo3 = function(x,y) {
+  var mean = (x>>1) + (y>>1);
+  if ((x^y) >= 0 && (x&y&1)){	
+    if (x>=0)
+      return mean + 1;
+    else
+      return mean - 1;
+  }
+  return mean
+}
+
+function testar(nome,metodo){
+  document.write("Testando: " + nome + "<br>");
+  imprime_se_erro(2147483647,metodo(2147483647,2147483647));
+  imprime_se_erro(15,metodo(20,10));
+  imprime_se_erro(16,metodo(11,21));
+  imprime_se_erro(10,metodo(10,11));
+  imprime_se_erro(-5,metodo(-20,10));
+  imprime_se_erro(50,metodo(0,100));
+  imprime_se_erro(0,metodo(0,0));
+}
+
+function imprime_se_erro(esperado, resultado){
+  if (esperado != resultado) {
+    document.write("Esperado: "+esperado+" - Resultado: "+resultado+"<br>");
+  }
+}
+
+function testar_desempenho(nome, num_testes, repeticoes, metodo) {
+  var time_start, time_stop, total_time, sum_times;
+  sum_times = 0;
+  document.write("Teste - " + nome + "<br>");
+  for (i = 0; i < num_testes; ++i) {
+    time_start = new Date().getTime();
+    for (j = 0; j < repeticoes; ++j) {
+      var temp = metodo(Math.floor(Math.random()*2147483647),Math.floor(Math.random()*2147483647));
+    }
+    time_stop = new Date().getTime();
+    total_time = (time_stop - time_start)/1000;
+    document.write((i+1) + "/" + num_testes + " = " + total_time +"<br> ");
+    sum_times += total_time;
+  }
+  document.write("Media:" + sum_times/num_testes + "<br><br>");
+}
+
+testar("Metodo 1 - (a+b)/2",metodo1);
+testar("Metodo 2 - (a + b) >> 1",metodo2);
+testar("Metodo 3 - (a >> 1) + (b >> 1) + something",metodo3);
+testar("Metodo 4 - (a&b) + ((a^b) >> 1)",metodo4);
+
+var num_testes = 6;
+var num_repeticoes = 10000000;
+
+document.write("<br>Testes de Desempenho:<br>");
+testar_desempenho("Base", num_testes, num_repeticoes, base);
+testar_desempenho("Metodo 1 - (a+b)/2", num_testes, num_repeticoes, metodo1);
+testar_desempenho("Metodo 2 - (a + b) >> 1", num_testes, num_repeticoes, metodo2);
+testar_desempenho("Metodo 3 - (a >> 1) + (b >> 1) + something", num_testes, num_repeticoes, metodo3);
+testar_desempenho("Metodo 4 - (a&b) + ((a^b) >> 1)", num_testes, num_repeticoes, metodo4);
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,329 @@
+String : Apenas um teste para "Aquecer" o softwar
+Regex : software
+Test 0: 0.174
+Test 1: 0.172
+Test 2: 0.173
+Test 3: 0.172
+Test 4: 0.174
+Media: 172.99999999999997
+Achou: true
+
+String : E eu estava dormindo: ZzZzZzZzZzZzZz
+Regex : (Zz)*
+Test 0: 0.638
+Test 1: 0.638
+Test 2: 0.64
+Test 3: 0.638
+Test 4: 0.638
+Media: 638.4
+Achou: true
+
+String : E eu estava dormindo: ZzZzZzZzZzZzZz
+Regex : (?:Zz)*
+Test 0: 0.626
+Test 1: 0.627
+Test 2: 0.626
+Test 3: 0.625
+Test 4: 0.628
+Media: 626.4000000000001
+Achou: true
+
+String : Meu login é thiago89 e tenho 22 anos.
+Regex : é (.)* e
+Test 0: 0.026
+Test 1: 0.026
+Test 2: 0.026
+Test 3: 0.027
+Test 4: 0.025
+Media: 26.000000000000004
+Achou: true
+
+String : Meu login é thiago89 e tenho 22 anos.
+Regex : é .* e
+Test 0: 0.021
+Test 1: 0.02
+Test 2: 0.021
+Test 3: 0.02
+Test 4: 0.02
+Media: 20.400000000000002
+Achou: true
+
+String : Meu login é thiago89 e tenho 22 anos.
+Regex : 89 [e] tenho [2]* anos
+Test 0: 0.098
+Test 1: 0.099
+Test 2: 0.099
+Test 3: 0.1
+Test 4: 0.099
+Media: 99
+Achou: true
+
+String : Meu login é thiago89 e tenho 22 anos.
+Regex : 89 e tenho 2* anos
+Test 0: 0.099
+Test 1: 0.098
+Test 2: 0.098
+Test 3: 0.1
+Test 4: 0.098
+Media: 98.6
+Achou: true
+
+String : Some huge string that will never match t
+Regex : .*Hello
+Test 0: 0.131
+Test 1: 0.132
+Test 2: 0.131
+Test 3: 0.132
+Test 4: 0.131
+Media: 131.4
+Achou: false
+
+String : Some huge string that will never match t
+Regex : ^.*Hello
+Test 0: 0.258
+Test 1: 0.257
+Test 2: 0.258
+Test 3: 0.257
+Test 4: 0.258
+Media: 257.6
+Achou: false
+
+String : aa aaa a aaa a aaaa aaa bbb a bbbb aaa b
+Regex : a{7,10}
+Test 0: 0.134
+Test 1: 0.136
+Test 2: 0.135
+Test 3: 0.135
+Test 4: 0.135
+Media: 135
+Achou: true
+
+String : aa aaa a aaa a aaaa aaa bbb a bbbb aaa b
+Regex : aaaaaaaa{0,3}
+Test 0: 0.015
+Test 1: 0.016
+Test 2: 0.017
+Test 3: 0.016
+Test 4: 0.015
+Media: 15.8
+Achou: true
+
+String : those who don't find this interesting ar
+Regex : (?:there|they)
+Test 0: 0.016
+Test 1: 0.016
+Test 2: 0.016
+Test 3: 0.015
+Test 4: 0.016
+Media: 15.8
+Achou: true
+
+String : those who don't find this interesting ar
+Regex : the(?:re|y)
+Test 0: 0.017
+Test 1: 0.016
+Test 2: 0.016
+Test 3: 0.016
+Test 4: 0.017
+Media: 16.400000000000002
+Achou: true
+
+String : not here \nnot here \nnot here \nnot here \n
+Regex : ^start|^begin
+Test 0: 0.053
+Test 1: 0.053
+Test 2: 0.053
+Test 3: 0.053
+Test 4: 0.053
+Media: 53.00000000000001
+Achou: false
+
+String : not here \nnot here \nnot here \nnot here \n
+Regex : ^(?:begin|start)
+Test 0: 0.054
+Test 1: 0.054
+Test 2: 0.054
+Test 3: 0.054
+Test 4: 0.054
+Media: 54.00000000000001
+Achou: false
+
+String : not here \nnot here \nnot here \nnot here \n
+Regex : end$|finish$
+Test 0: 0.059
+Test 1: 0.063
+Test 2: 0.058
+Test 3: 0.063
+Test 4: 0.066
+Media: 61.800000000000004
+Achou: false
+
+String : not here \nnot here \nnot here \nnot here \n
+Regex : (?:end|finish)$
+Test 0: 0.061
+Test 1: 0.065
+Test 2: 0.06
+Test 3: 0.06
+Test 4: 0.06
+Media: 61.199999999999996
+Achou: false
+
+String : in the begining a bunch of text and more
+Regex : .*begining
+Test 0: 0.015
+Test 1: 0.015
+Test 2: 0.015
+Test 3: 0.015
+Test 4: 0.015
+Media: 15
+Achou: true
+
+String : in the begining a bunch of text and more
+Regex : .*?begining
+Test 0: 0.008
+Test 1: 0.009
+Test 2: 0.008
+Test 3: 0.008
+Test 4: 0.008
+Media: 8.200000000000001
+Achou: true
+
+String : a bunch of text and more text and more t
+Regex : .*end
+Test 0: 0.038
+Test 1: 0.037
+Test 2: 0.038
+Test 3: 0.037
+Test 4: 0.037
+Media: 37.400000000000006
+Achou: true
+
+String : a bunch of text and more text and more t
+Regex : .*?end
+Test 0: 0.03
+Test 1: 0.03
+Test 2: 0.03
+Test 3: 0.03
+Test 4: 0.031
+Media: 30.2
+Achou: true
+
+String : a bunch of text and more text and more t
+Regex : test|monkey|andy
+Test 0: 0.052
+Test 1: 0.052
+Test 2: 0.052
+Test 3: 0.052
+Test 4: 0.053
+Media: 52.2
+Achou: true
+
+String : a bunch of text and more text and more t
+Regex : test
+Test 0: 0.038
+Test 1: 0.039
+Test 2: 0.038
+Test 3: 0.038
+Test 4: 0.039
+Media: 38.400000000000006
+Achou: true
+
+String : a bunch of text and more text and more t
+Regex : monkey
+Test 0: 0.027
+Test 1: 0.028
+Test 2: 0.027
+Test 3: 0.027
+Test 4: 0.028
+Media: 27.400000000000002
+Achou: false
+
+String : a bunch of text and more text and more t
+Regex : andy
+Test 0: 0.033
+Test 1: 0.032
+Test 2: 0.032
+Test 3: 0.032
+Test 4: 0.033
+Media: 32.4
+Achou: false
+
+String : a bunch of yell and readable text and mo
+Regex : blue|yellow|red
+Test 0: 0.047
+Test 1: 0.046
+Test 2: 0.046
+Test 3: 0.045
+Test 4: 0.046
+Media: 46
+Achou: true
+
+String : a bunch of yell and readable text and mo
+Regex : (?=[byr])(?:blue|yellow|red)
+Test 0: 0.135
+Test 1: 0.137
+Test 2: 0.137
+Test 3: 0.132
+Test 4: 0.135
+Media: 135.20000000000002
+Achou: true
+
+String : foot
+Regex : (?:andy|barbie|car|dice|ex|foot)
+Test 0: 0.064
+Test 1: 0.064
+Test 2: 0.064
+Test 3: 0.064
+Test 4: 0.064
+Media: 64
+Achou: true
+
+String : foot
+Regex : (?:foot|andy|barbie|car|dice|ex)
+Test 0: 0.065
+Test 1: 0.066
+Test 2: 0.065
+Test 3: 0.065
+Test 4: 0.066
+Media: 65.4
+Achou: true
+
+String : I want to find the last one but the is a
+Regex : (?:ex|some|other|excelent|stuff|way)\b
+Test 0: 0.065
+Test 1: 0.066
+Test 2: 0.066
+Test 3: 0.065
+Test 4: 0.065
+Media: 65.4
+Achou: true
+
+String : I want to find the last one but the is a
+Regex : (?:ex\b|some\b|other\b|excelent\b|stuff\b|way\b)
+Test 0: 0.065
+Test 1: 0.065
+Test 2: 0.065
+Test 3: 0.065
+Test 4: 0.064
+Media: 64.8
+Achou: true
+
+String : I want to find 555 a number 888 in this 
+Regex : (?:1|2|3|4)+
+Test 0: 0.02
+Test 1: 0.021
+Test 2: 0.02
+Test 3: 0.02
+Test 4: 0.021
+Media: 20.400000000000002
+Achou: true
+
+String : I want to find 555 a number 888 in this 
+Regex : [1-4]+
+Test 0: 0.02
+Test 1: 0.02
+Test 2: 0.02
+Test 3: 0.019
+Test 4: 0.02
+Media: 19.8
+Achou: true

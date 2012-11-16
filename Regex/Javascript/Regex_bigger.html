@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script type="text/javascript">
+
+var string_list = new Array();
+var regex_list = new Array();
+
+var repetitions = new Array();
+var tests = 5;
+
+function raw(str){
+    return str.replace(/\t/g,'\\t').replace(/\r\n/g,'\\r\\n').replace(/\r/g,'\\r').replace(/\n/g,'\\n');
+}
+
+function add_regex(str, regex, reps) {
+	string_list.push(str);
+	regex_list.push(new RegExp(regex,""));
+	repetitions.push(reps);
+}
+
+function load_regex() {
+	var warm_up_string_1 = "Apenas um teste para \"Aquecer\" o software";
+	var warm_up_regex_1 = "software";
+	var warm_up_reps = 10000000;
+	add_regex(warm_up_string_1, warm_up_regex_1, warm_up_reps);
+		
+	//Common sense
+		
+	var non_capturing_parentesis_string_1 = "E eu estava dormindo: ZzZzZzZzZzZzZz";
+	var non_capturing_parentesis_regex_1 = "(Zz)*";
+	var non_capturing_parentesis_regex_2 = "(?:Zz)*";
+	var non_capturing_parentesis_reps = 100000000;
+	add_regex(non_capturing_parentesis_string_1, non_capturing_parentesis_regex_1, non_capturing_parentesis_reps);
+	add_regex(non_capturing_parentesis_string_1, non_capturing_parentesis_regex_2, non_capturing_parentesis_reps);
+	
+	var superfluous_parentesis_string_1 = "Meu login é thiago89 e tenho 22 anos.";
+	var superfluous_parentesis_regex_1 = "é (?:.)* e";
+	var superfluous_parentesis_regex_2 = "é .* e";
+	var superfluous_parentesis_reps = 1000000;
+	add_regex(superfluous_parentesis_string_1, superfluous_parentesis_regex_1, superfluous_parentesis_reps);
+	add_regex(superfluous_parentesis_string_1, superfluous_parentesis_regex_2, superfluous_parentesis_reps);
+	
+	var superfluous_classes_string_1 = "Meu login é thiago89 e tenho 22 anos.";
+	var superfluous_classes_regex_1 = "89 [e] tenho [2]* anos";
+	var superfluous_classes_regex_2 = "89 e tenho 2* anos";
+	var superfluous_classes_reps = 10000000;
+	add_regex(superfluous_classes_string_1, superfluous_classes_regex_1, superfluous_classes_reps);
+	add_regex(superfluous_classes_string_1, superfluous_classes_regex_2, superfluous_classes_reps);
+	
+	
+	var leading_anchors_string_1 = "Some huge string that will never match the regex";
+	var leading_anchors_regex_1 = ".*Hello";
+	var leading_anchors_regex_2 = "^.*Hello";
+	var leading_anchors_reps = 10000000; // 100*more
+	add_regex(leading_anchors_string_1, leading_anchors_regex_1, leading_anchors_reps);
+	add_regex(leading_anchors_string_1, leading_anchors_regex_2, leading_anchors_reps);
+			
+	// Expose Literal text
+	
+	var required_quatifiers_string_1 = "aa aaa a aaa a aaaa aaa bbb a bbbb aaa bbb a ccc eee aaaa eee ccc aaaaaaaaa";
+	var required_quatifiers_regex_1 = "a{7,10}";
+	var required_quatifiers_regex_2 = "aaaaaaaa{0,3}";
+	var required_quatifiers_reps = 1000000;
+	add_regex(required_quatifiers_string_1, required_quatifiers_regex_1, required_quatifiers_reps);
+	add_regex(required_quatifiers_string_1, required_quatifiers_regex_2, required_quatifiers_reps);
+	
+	var required_alternation_string_1 = "those who don't find this interesting are the ones that I shouldn't be sending there";
+	var required_alternation_regex_1 = "(?:there|they)";
+	var required_alternation_regex_2 = "the(?:re|y)";
+	var required_alternation_reps = 1000000;
+	add_regex(required_alternation_string_1, required_alternation_regex_1, required_alternation_reps);
+	add_regex(required_alternation_string_1, required_alternation_regex_2, required_alternation_reps);
+	
+	// Expose Anchors
+	
+	var expose_front_string_1 = "not here \nnot here \nnot here \nnot here \nnot here \nnot here \nnot here \nstart";
+	var expose_front_regex_1 = "^start|^begin";
+	var expose_front_regex_2 = "^(?:begin|start)";
+	var expose_front_reps = 10000000; // 10*more
+	add_regex(expose_front_string_1, expose_front_regex_1, expose_front_reps);
+	add_regex(expose_front_string_1, expose_front_regex_2, expose_front_reps);
+	
+	var expose_back_string_1 = "not here \nnot here \nnot here \nnot here \nnot here \nnot here \nnot here \n it's here finish\n not here";
+	var expose_back_regex_1 = "end$|finish$";
+	var expose_back_regex_2 = "(?:end|finish)$";
+	var expose_back_reps = 10000000; // 10*more
+	add_regex(expose_back_string_1, expose_back_regex_1, expose_back_reps);
+	add_regex(expose_back_string_1, expose_back_regex_2, expose_back_reps);
+	
+	// Lazy vs Greedy
+	
+	var lazy_string_1 = "in the begining a bunch of text and more text and more text and more text and more text and more text and more text and more text and more text ";
+	var lazy_regex_1 = ".*begining";
+	var lazy_regex_2 = ".*?begining";
+	var lazy_reps = 1000000;
+	add_regex(lazy_string_1, lazy_regex_1, lazy_reps);
+	add_regex(lazy_string_1, lazy_regex_2, lazy_reps);
+	
+	var greedy_string_1 = "a bunch of text and more text and more text and more text and more text and more text and more text and more text and more text in the end";
+	var greedy_regex_1 = ".*end";
+	var greedy_regex_2 = ".*?end";
+	var greedy_reps = 1000000;
+	add_regex(greedy_string_1, greedy_regex_1, greedy_reps);
+	add_regex(greedy_string_1, greedy_regex_2, greedy_reps);
+	
+	// One vs Multiple
+	
+	var one_vs_multiple_string_1 = "a bunch of text and more text and more text rr and more text and more text and more text and more text and more text and more text and a test the end";
+	var one_vs_multiple_regex_1 = "test|monkey|andy";
+	var one_vs_multiple_regex_2 = "test";
+	var one_vs_multiple_regex_3 = "monkey";
+	var one_vs_multiple_regex_4 = "andy";
+	var one_vs_multiple_reps = 1000000;
+	add_regex(one_vs_multiple_string_1, one_vs_multiple_regex_1, one_vs_multiple_reps);
+	add_regex(one_vs_multiple_string_1, one_vs_multiple_regex_2, one_vs_multiple_reps);
+	add_regex(one_vs_multiple_string_1, one_vs_multiple_regex_3, one_vs_multiple_reps);
+	add_regex(one_vs_multiple_string_1, one_vs_multiple_regex_4, one_vs_multiple_reps);
+	
+	// Mimic Initial-Character Discrimination
+	
+	var mimic_initial_string_1 = "a bunch of yell and readable text and more a bunch of yell and readable text and more a bunch of yell and readable text and more a bunch of yell and readable text and more blue";
+	var mimic_initial_regex_1 = "blue|yellow|red";
+	var mimic_initial_regex_2 = "(?=[byr])(?:blue|yellow|red)";
+	var mimic_initial_reps = 1000000;
+	add_regex(mimic_initial_string_1, mimic_initial_regex_1, mimic_initial_reps);
+	add_regex(mimic_initial_string_1, mimic_initial_regex_2, mimic_initial_reps);
+	
+	// Atomic Grouping and Possesive Quantifiers
+	
+	//var possesive_string_1 = "thiago:ruback:elvis:henrique:fabio:mokarzel:walter:filho:john:smith:seu:madruga:barack:obama";
+	//var possesive_regex_1 = "[^:]+:obama";
+	//var possesive_regex_2 = "[^:]++:obama";
+	//var possesive_regex_3 = "(?>[^:]+):obama";
+	//var possesive_reps = 1000000;
+	//add_regex(possesive_string_1, possesive_regex_1, possesive_reps);
+	//add_regex(possesive_string_1, possesive_regex_2, possesive_reps);
+	//add_regex(possesive_string_1, possesive_regex_3, possesive_reps);
+	
+	// Lead to a match
+	
+	var most_comom_first_string_1 = "foot";
+	var most_comom_first_regex_1 = "(?:andy|barbie|car|dice|ex|foot)";
+	var most_comom_first_regex_2 = "(?:foot|andy|barbie|car|dice|ex)";
+	var most_comom_first_reps = 10000000;
+	add_regex(most_comom_first_string_1, most_comom_first_regex_1, most_comom_first_reps);
+	add_regex(most_comom_first_string_1, most_comom_first_regex_2, most_comom_first_reps);
+	
+	var distribute_end_string_1 = "I want to find the last one but the is a lot of exexexexexexexexexexexexexexexexexexexexexexexexexexexe in my way here";
+	var distribute_end_regex_1 = "(?:ex|some|other|excelent|stuff|way)\\b";
+	var distribute_end_regex_2 = "(?:ex\\b|some\\b|other\\b|excelent\\b|stuff\\b|way\\b)";
+	var distribute_end_reps = 1000000; // 10*more
+	add_regex(distribute_end_string_1, distribute_end_regex_1, distribute_end_reps);
+	add_regex(distribute_end_string_1, distribute_end_regex_2, distribute_end_reps);
+	
+	// Use what you have!
+	
+	var digits_string_1 = "I want to find 555 a number 888 in this regex lower with only digit lowe than four and here it is 422";
+	var digits_regex_1 = "(?:1|2|3|4)+";
+	var digits_regex_2 = "[1-4]+";
+	var digits_reps = 1000000;
+	add_regex(digits_string_1, digits_regex_1, digits_reps);
+	add_regex(digits_string_1, digits_regex_2, digits_reps);
+}
+
+function run_regex() {
+  for (var i = 0; i < string_list.length; ++i) {
+	  //regex stuff
+		var regex = regex_list[i]
+		var deltas = new Array();
+		var mean = 0;
+		var string = string_list[i];
+		var achou = regex.test(string);
+		
+		//Warmup
+		for (var k = 0; k < repetitions[i]; ++k) {
+			regex.test(string);
+		}
+		
+		for (var j = 0; j < tests; ++j) {
+			begin = new Date().getTime();
+			for (var k = 0; k < repetitions[i]; ++k) {
+				regex.test(string);
+			}
+			end = new Date().getTime();
+			var total_time = (end - begin)/1000;
+			deltas.push(total_time);
+			mean += (total_time);
+		}
+		mean /= tests;
+		
+		//print stuff
+		document.write("String : " + raw(string.substring(0,Math.min(40,string.length))) + "<br>");
+		document.write("Regex : " + regex.source + "<br>");
+		for (var j = 0; j < deltas.length; ++j) {
+			document.write("Test " + j + ": " + deltas[j] + "<br>");
+		}
+		document.write("Media:  " + 1000*mean + "<br>");
+		document.write("Achou:  " + achou + "<br><br>");
+	}
+}
+
+load_regex();
+run_regex();
+
+</script>
+
+</body>
+</html>

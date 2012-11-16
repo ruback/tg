@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script type="text/javascript">
+
+var sqrtfloat = new Float32Array(1);
+var sqrtint = new Int32Array(sqrtfloat.buffer);
+
+var sqrt = function(number) {
+	return Math.sqrt(number);
+};
+
+var pow = function(number) {
+	return Math.pow(number,0.5);
+};
+
+var sqrt0 = function(number) {
+  var float = sqrtfloat;
+  var int = sqrtint;
+  float[0] = number;
+  int[0] = 0x5f375a86 - (int[0] >> 1);
+  return float[0]*number;
+}
+
+var sqrt1 = function(number) {
+  var float = sqrtfloat;
+  var int = sqrtint;
+	var half_number = (number * 0.5);
+  float[0] = number;
+  int[0] = 0x5f375a86 - (int[0] >> 1);
+  float[0] = float[0] * (1.5 - (half_number * float[0] * float[0]));
+  return float[0]*number;
+}
+
+var sqrt2 = function(number) {
+  var float = sqrtfloat;
+  var int = sqrtint;
+	var half_number = (number * 0.5);
+  float[0] = number;
+  int[0] = 0x5f375a86 - (int[0] >> 1);
+  float[0] = float[0] * (1.5 - (half_number * float[0] * float[0]));
+	float[0] = float[0] * (1.5 - (half_number * float[0] * float[0]));
+  return float[0]*number;
+}
+
+var sqrt3 = function(number) {
+  var float = sqrtfloat;
+  var int = sqrtint;
+	var half_number = (number * 0.5);
+  float[0] = number;
+  int[0] = 0x5f375a86 - (int[0] >> 1);
+  float[0] = float[0] * (1.5 - (half_number * float[0] * float[0]));
+	float[0] = float[0] * (1.5 - (half_number * float[0] * float[0]));
+	float[0] = float[0] * (1.5 - (half_number * float[0] * float[0]));
+  return float[0]*number;
+}
+
+function testar_desempenho(nome, num_testes, repeticoes, metodo) {
+  var time_start, time_stop, total_time, sum_times;
+	var temp, temp2, temp3, temp4, temp5, temp6;
+  sum_times = 0;
+  document.write("Teste - " + nome + "<br>");
+	//Warmup
+  for (i = 0; i < num_testes; ++i) {
+    time_start = new Date().getTime();
+    for (j = 0; j < repeticoes; ++j) {
+      temp = metodo(1.312371232);
+      temp2 = metodo(3.254536726);
+      temp3 = metodo(15.42342343);
+      temp4 = metodo(1359.234233);
+      temp5 = metodo(13214124.23);
+      temp6 = metodo(8989634345.0);
+    }
+    time_stop = new Date().getTime();
+    total_time = (time_stop - time_start);
+    document.write((i+1) + "/" + num_testes + " = " + total_time +"<br> ");
+    if (i != 0){
+			sum_times += total_time;
+		}
+  }
+  document.write("Media:" + sum_times/(num_testes-1) + "<br><br>");
+}
+
+var num_testes = 6;
+var num_repeticoes = 10000000;
+
+document.write("<br>Testes de Desempenho:<br>");
+testar_desempenho("warmup", num_testes, num_repeticoes, sqrt);
+testar_desempenho("sqrt", num_testes, num_repeticoes, sqrt);
+testar_desempenho("pow", num_testes, num_repeticoes, pow);
+testar_desempenho("fast sqrt 0", num_testes, num_repeticoes, sqrt0);
+testar_desempenho("fast sqrt 1", num_testes, num_repeticoes, sqrt1);
+testar_desempenho("fast sqrt 2", num_testes, num_repeticoes, sqrt2);
+testar_desempenho("fast sqrt 3", num_testes, num_repeticoes, sqrt3);
+
+
+</script>
+
+</body>
+</html>
